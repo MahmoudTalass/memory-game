@@ -4,6 +4,8 @@ import Game from "./components/Game";
 import { useState, useEffect } from "react";
 import Lost from "./components/Lost";
 
+const clickStatusInitial = {};
+
 export default function App() {
    const [bestScore, setBestScore] = useState(0);
    const [characters, setCharacters] = useState([]);
@@ -39,7 +41,6 @@ export default function App() {
             return;
          }
 
-         const clickStatusInitial = {};
          const charactersJson = await characters.json();
          const charactersSimplified = charactersJson.map((char) => {
             clickStatusInitial[char.id] = false;
@@ -51,7 +52,6 @@ export default function App() {
          });
 
          if (!ignore) {
-            // setClickStatus(clickStatusInitial);
             setCharacters(charactersSimplified);
          }
       }
@@ -72,6 +72,7 @@ export default function App() {
                   handleHighestScore={handleBestScore}
                   characters={characters}
                   key={crypto.randomUUID()}
+                  clickStatusInitial={clickStatusInitial}
                />
             )}
             {showLost && (

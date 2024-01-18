@@ -3,9 +3,14 @@ import { useState } from "react";
 import arrayShuffle from "array-shuffle";
 import Card from "./Card";
 
-export default function Game({ bestScore, handleBestScore, characters }) {
+export default function Game({
+   bestScore,
+   handleBestScore,
+   characters,
+   clickStatusInitial,
+}) {
    const [score, setScore] = useState(0);
-   const [clickStatus, setClickStatus] = useState({});
+   const [clickStatus, setClickStatus] = useState({ clickStatusInitial });
 
    let shuffledCharacters = [];
    if (characters !== null && characters.length !== 0) {

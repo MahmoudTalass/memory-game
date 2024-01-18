@@ -5,6 +5,7 @@ import Card from "./Card";
 export default function Game() {
    const [score, setScore] = useState(0);
    const [highestScore, setHighestScore] = useState(0);
+   const [clickStatus, setClickStatus] = useState({});
    const [characters, setCharacters] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
 
@@ -18,15 +19,18 @@ export default function Game() {
          return;
       }
 
+      const clickStatusInitial = {};
       const charactersJson = await characters.json();
       const charactersSimplified = charactersJson.map((char) => {
+         clickStatusInitial[char.id] = false;
          return {
             id: char.id,
             name: char.name,
-            img: char.img,
+            img: char.img.split("/revision")[0],
          };
       });
 
+      setClickStatus(clickStatusInitial);
       setCharacters(charactersSimplified);
       setIsLoading(false);
       return charactersSimplified;
@@ -39,14 +43,33 @@ export default function Game() {
    let shuffledCharacters = [];
    if (characters.length !== 0) {
       shuffledCharacters = arrayShuffle(characters);
-      console.log(shuffledCharacters);
+   }
+
+   function handleClickStatus(cardId) {
+      if (clickStatus[cardId]) {
+         console.log("end game");
+      } else {
+         setClickStatus({ ...clickStatus, [cardId]: true });
+         if (highestScore < score + 1) {
+            setHighestScore(score + 1);
+         }
+         setScore(score + 1);
+      }
    }
 
    return (
       <div className="game-container">
+         <p>Score: {score} </p>
+         <p>Highest score: {highestScore}</p>
          <div className="cards-container">
             {shuffledCharacters.map((character) => {
-               return <Card {...character} key={character.id} />;
+               return (
+                  <Card
+                     {...character}
+                     handleClickStatus={handleClickStatus}
+                     key={character.id}
+                  />
+               );
             })}
             {isLoading && <p>loading...</p>}
          </div>

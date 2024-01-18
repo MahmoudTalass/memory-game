@@ -43,7 +43,7 @@ export default function Game() {
    }
 
    return (
-      <div>
+      <div className="game-container">
          <div className="cards-container">
             {shuffledCharacters.map((character) => {
                return <Card {...character} key={character.id} />;

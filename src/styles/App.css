@@ -12,11 +12,17 @@ body {
    min-height: 100vh;
    display: flex;
    flex-direction: column;
+   background-color: #403535;
 }
 
 header {
    padding: 2rem 0;
    text-align: center;
+}
+
+main {
+   display: flex;
+   justify-content: center;
 }
 
 footer {

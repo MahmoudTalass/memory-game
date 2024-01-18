@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import arrayShuffle from "array-shuffle";
 import Card from "./Card";
 
-export default function Game() {
+export default function Game({ highestScore, handleHighestScore }) {
    const [score, setScore] = useState(0);
-   const [highestScore, setHighestScore] = useState(0);
    const [clickStatus, setClickStatus] = useState({});
    const [characters, setCharacters] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +51,7 @@ export default function Game() {
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });
          if (highestScore < score + 1) {
-            setHighestScore(score + 1);
+            handleHighestScore(score + 1);
          }
          setScore(score + 1);
       }

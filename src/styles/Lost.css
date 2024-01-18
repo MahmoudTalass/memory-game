@@ -1,0 +1,29 @@
+.end-game-container {
+   margin-top: 5rem;
+   background-color: #d2c4ae;
+   max-width: 500px;
+   width: 500px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 2rem;
+   gap: 3rem;
+   border-radius: 5px;
+}
+
+.end-game-container > p {
+   font-size: 3rem;
+}
+
+.try-again-btn {
+   padding: 1rem 2rem;
+   font-size: 1.5rem;
+   border: none;
+   border-radius: 5px;
+   background-color: #6f553f;
+   transition: transform 200ms ease-in;
+}
+
+.try-again-btn:focus {
+   transform: scale(1.1);
+}

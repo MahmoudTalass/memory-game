@@ -1,49 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import arrayShuffle from "array-shuffle";
 import Card from "./Card";
 
-export default function Game({ highestScore, handleHighestScore }) {
+export default function Game({ highestScore, handleHighestScore, characters }) {
    const [score, setScore] = useState(0);
    const [clickStatus, setClickStatus] = useState({});
-   const [characters, setCharacters] = useState([]);
-   const [isLoading, setIsLoading] = useState(true);
-
-   useEffect(() => {
-      async function fetchCharacters() {
-         setCharacters(null);
-         const characters = await fetch(
-            "https://api.attackontitanapi.com/characters/1,2,3,4,5,12,86,87,88,124,184,188",
-            { mode: "cors" }
-         );
-
-         if (!characters.ok) {
-            return;
-         }
-
-         const clickStatusInitial = {};
-         const charactersJson = await characters.json();
-         const charactersSimplified = charactersJson.map((char) => {
-            clickStatusInitial[char.id] = false;
-            return {
-               id: char.id,
-               name: char.name,
-               img: char.img.split("/revision")[0],
-            };
-         });
-
-         if (!ignore) {
-            setClickStatus(clickStatusInitial);
-            setCharacters(charactersSimplified);
-            setIsLoading(false);
-         }
-      }
-      let ignore = false;
-      fetchCharacters();
-      return () => {
-         ignore = true;
-      };
-   }, []);
 
    let shuffledCharacters = [];
    if (characters !== null && characters.length !== 0) {
@@ -52,12 +14,11 @@ export default function Game({ highestScore, handleHighestScore }) {
 
    function handleClickStatus(cardId) {
       if (clickStatus[cardId]) {
-         console.log("end game");
+         if (highestScore < score + 1) {
+            handleHighestScore(score);
+         }
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });
-         if (highestScore < score + 1) {
-            handleHighestScore(score + 1);
-         }
          setScore(score + 1);
       }
    }
@@ -76,7 +37,6 @@ export default function Game({ highestScore, handleHighestScore }) {
                   />
                );
             })}
-            {isLoading && <p>loading...</p>}
          </div>
       </div>
    );

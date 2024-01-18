@@ -2,13 +2,13 @@
 export default function Lost({
    handleShowLost,
    handleShowGame,
-   highestScore,
+   bestScore,
    maxPotentialScore,
 }) {
    return (
       <div className="end-game-container">
          <p>
-            Highest Score: {highestScore}/{maxPotentialScore}
+            Best score: {bestScore}/{maxPotentialScore}
          </p>
          <p>You lost</p>
          <button

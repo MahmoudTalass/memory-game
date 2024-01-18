@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Lost from "./components/Lost";
 
 export default function App() {
-   const [highestScore, setHighestScore] = useState(0);
+   const [bestScore, setBestScore] = useState(0);
    const [characters, setCharacters] = useState([]);
    const [showGame, setShowGame] = useState(false);
    const [showLost, setShowLost] = useState(true);
@@ -21,6 +21,10 @@ export default function App() {
 
    function handleShowWon() {
       setShowWon(!showWon);
+   }
+
+   function handleBestScore(newBest) {
+      setBestScore(newBest);
    }
 
    useEffect(() => {
@@ -58,18 +62,14 @@ export default function App() {
       };
    }, []);
 
-   function handleHighestScore(newHighest) {
-      setHighestScore(newHighest);
-   }
-
    return (
       <>
          <Header />
          <main>
             {showGame && (
                <Game
-                  highestScore={highestScore}
-                  handleHighestScore={handleHighestScore}
+                  bestScore={bestScore}
+                  handleHighestScore={handleBestScore}
                   characters={characters}
                   key={crypto.randomUUID()}
                />
@@ -78,7 +78,7 @@ export default function App() {
                <Lost
                   handleShowGame={handleShowGame}
                   handleShowLost={handleShowLost}
-                  highestScore={highestScore}
+                  bestScore={bestScore}
                   maxPotentialScore={characters !== null && characters.length}
                />
             )}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import arrayShuffle from "array-shuffle";
 import Card from "./Card";
 
-export default function Game({ highestScore, handleHighestScore, characters }) {
+export default function Game({ bestScore, handleBestScore, characters }) {
    const [score, setScore] = useState(0);
    const [clickStatus, setClickStatus] = useState({});
 
@@ -14,8 +14,8 @@ export default function Game({ highestScore, handleHighestScore, characters }) {
 
    function handleClickStatus(cardId) {
       if (clickStatus[cardId]) {
-         if (highestScore < score + 1) {
-            handleHighestScore(score);
+         if (bestScore < score + 1) {
+            handleBestScore(score);
          }
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });
@@ -26,7 +26,7 @@ export default function Game({ highestScore, handleHighestScore, characters }) {
    return (
       <div className="game-container">
          <p>Score: {score} </p>
-         <p>Highest score: {highestScore}</p>
+         <p>Best score: {bestScore}</p>
          <div className="cards-container">
             {shuffledCharacters.map((character) => {
                return (

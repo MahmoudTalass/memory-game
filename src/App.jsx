@@ -2,10 +2,26 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Game from "./components/Game";
 import { useState, useEffect } from "react";
+import Lost from "./components/Lost";
 
 export default function App() {
    const [highestScore, setHighestScore] = useState(0);
    const [characters, setCharacters] = useState([]);
+   const [showGame, setShowGame] = useState(false);
+   const [showLost, setShowLost] = useState(true);
+   const [showWon, setShowWon] = useState(false);
+
+   function handleShowLost() {
+      setShowLost(!showLost);
+   }
+
+   function handleShowGame() {
+      setShowGame(!showGame);
+   }
+
+   function handleShowWon() {
+      setShowWon(!showWon);
+   }
 
    useEffect(() => {
       async function fetchCharacters() {
@@ -50,12 +66,22 @@ export default function App() {
       <>
          <Header />
          <main>
-            <Game
-               highestScore={highestScore}
-               handleHighestScore={handleHighestScore}
-               characters={characters}
-               key={crypto.randomUUID()}
-            />
+            {showGame && (
+               <Game
+                  highestScore={highestScore}
+                  handleHighestScore={handleHighestScore}
+                  characters={characters}
+                  key={crypto.randomUUID()}
+               />
+            )}
+            {showLost && (
+               <Lost
+                  handleShowGame={handleShowGame}
+                  handleShowLost={handleShowLost}
+                  highestScore={highestScore}
+                  maxPotentialScore={characters !== null && characters.length}
+               />
+            )}
          </main>
          <Footer />
       </>

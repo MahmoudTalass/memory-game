@@ -17,6 +17,7 @@ export default function App() {
             <Game
                highestScore={highestScore}
                handleHighestScore={handleHighestScore}
+               key={crypto.randomUUID()}
             />
          </main>
          <Footer />

@@ -9,39 +9,44 @@ export default function Game({ highestScore, handleHighestScore }) {
    const [characters, setCharacters] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
 
-   async function fetchCharacters() {
-      const characters = await fetch(
-         "https://api.attackontitanapi.com/characters/1,2,3,4,5,12,86,87,88,124,184,188",
-         { mode: "cors" }
-      );
-
-      if (!characters.ok) {
-         return;
-      }
-
-      const clickStatusInitial = {};
-      const charactersJson = await characters.json();
-      const charactersSimplified = charactersJson.map((char) => {
-         clickStatusInitial[char.id] = false;
-         return {
-            id: char.id,
-            name: char.name,
-            img: char.img.split("/revision")[0],
-         };
-      });
-
-      setClickStatus(clickStatusInitial);
-      setCharacters(charactersSimplified);
-      setIsLoading(false);
-      return charactersSimplified;
-   }
-
    useEffect(() => {
+      async function fetchCharacters() {
+         setCharacters(null);
+         const characters = await fetch(
+            "https://api.attackontitanapi.com/characters/1,2,3,4,5,12,86,87,88,124,184,188",
+            { mode: "cors" }
+         );
+
+         if (!characters.ok) {
+            return;
+         }
+
+         const clickStatusInitial = {};
+         const charactersJson = await characters.json();
+         const charactersSimplified = charactersJson.map((char) => {
+            clickStatusInitial[char.id] = false;
+            return {
+               id: char.id,
+               name: char.name,
+               img: char.img.split("/revision")[0],
+            };
+         });
+
+         if (!ignore) {
+            setClickStatus(clickStatusInitial);
+            setCharacters(charactersSimplified);
+            setIsLoading(false);
+         }
+      }
+      let ignore = false;
       fetchCharacters();
+      return () => {
+         ignore = true;
+      };
    }, []);
 
    let shuffledCharacters = [];
-   if (characters.length !== 0) {
+   if (characters !== null && characters.length !== 0) {
       shuffledCharacters = arrayShuffle(characters);
    }
 

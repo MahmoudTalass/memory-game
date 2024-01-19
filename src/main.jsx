@@ -5,6 +5,7 @@ import "./styles/App.css";
 import "./styles/Game.css";
 import "./styles/Lost.css";
 import "./styles/StartGame.css";
+import "./styles/Won.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <React.StrictMode>

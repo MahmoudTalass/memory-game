@@ -35,8 +35,11 @@ export default function Game({
 
    return (
       <div className="game-container">
-         <p>Score: {score} </p>
-         <p>Best score: {bestScore}</p>
+         <div className="scores-container">
+            <p>Score: {score} </p>
+            <p>Best score: {bestScore}</p>
+         </div>
+
          <div className="cards-container">
             {shuffledCharacters.map((character) => {
                return (

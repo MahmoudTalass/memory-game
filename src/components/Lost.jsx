@@ -6,7 +6,7 @@ export default function Lost({
    maxPotentialScore,
 }) {
    return (
-      <div className="end-game-container">
+      <div className="end-game-container buttons-container">
          <p>
             Best score: {bestScore}/{maxPotentialScore}
          </p>

@@ -2,7 +2,7 @@
 export default function StartGame({
    handleDifficulity,
    handleShowGame,
-   handleShowStartGame,
+   handleShowStartScreen,
 }) {
    return (
       <div className="start-game-container">
@@ -15,7 +15,7 @@ export default function StartGame({
                className="difficulity-option-btn"
                onClick={() => {
                   handleShowGame();
-                  handleShowStartGame();
+                  handleShowStartScreen();
                   handleDifficulity(4);
                }}
             >
@@ -25,7 +25,7 @@ export default function StartGame({
                className="difficulity-option-btn"
                onClick={() => {
                   handleShowGame();
-                  handleShowStartGame();
+                  handleShowStartScreen();
                   handleDifficulity(8);
                }}
             >
@@ -35,7 +35,7 @@ export default function StartGame({
                className="difficulity-option-btn"
                onClick={() => {
                   handleShowGame();
-                  handleShowStartGame();
+                  handleShowStartScreen();
                   handleDifficulity(12);
                }}
             >

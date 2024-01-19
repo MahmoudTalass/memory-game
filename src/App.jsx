@@ -4,6 +4,7 @@ import Game from "./components/Game";
 import { useState, useEffect } from "react";
 import Lost from "./components/Lost";
 import StartGame from "./components/StartGame";
+import Won from "./components/Won";
 
 const clickStatusInitial = {};
 
@@ -88,6 +89,7 @@ export default function App() {
                   numOfCards={numOfCards}
                   handleShowLost={handleShowLost}
                   handleShowGame={handleShowGame}
+                  handleShowWon={handleShowWon}
                />
             )}
             {showLost && (
@@ -95,7 +97,7 @@ export default function App() {
                   handleShowGame={handleShowGame}
                   handleShowLost={handleShowLost}
                   bestScore={bestScore}
-                  maxPotentialScore={characters !== null && characters.length}
+                  maxPotentialScore={numOfCards}
                />
             )}
 
@@ -105,6 +107,12 @@ export default function App() {
                   handleShowGame={handleShowGame}
                   handleDifficulity={handleNumOfCards}
                   handleBestScore={handleBestScore}
+               />
+            )}
+            {showWon && (
+               <Won
+                  handleBestScore={handleBestScore}
+                  handleShowStartScreen={handleShowStartScreen}
                />
             )}
          </main>

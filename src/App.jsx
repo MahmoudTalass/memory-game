@@ -85,6 +85,7 @@ export default function App() {
                   characters={characters}
                   key={crypto.randomUUID()}
                   clickStatusInitial={clickStatusInitial}
+                  numOfCards={numOfCards}
                />
             )}
             {showLost && (

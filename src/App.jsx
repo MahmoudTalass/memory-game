@@ -81,11 +81,13 @@ export default function App() {
             {showGame && (
                <Game
                   bestScore={bestScore}
-                  handleHighestScore={handleBestScore}
+                  handleBestScore={handleBestScore}
                   characters={characters}
                   key={crypto.randomUUID()}
                   clickStatusInitial={clickStatusInitial}
                   numOfCards={numOfCards}
+                  handleShowLost={handleShowLost}
+                  handleShowGame={handleShowGame}
                />
             )}
             {showLost && (

@@ -104,6 +104,7 @@ export default function App() {
                   handleShowStartScreen={handleShowStartScreen}
                   handleShowGame={handleShowGame}
                   handleDifficulity={handleNumOfCards}
+                  handleBestScore={handleBestScore}
                />
             )}
          </main>

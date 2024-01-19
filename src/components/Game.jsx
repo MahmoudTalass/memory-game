@@ -14,7 +14,7 @@ export default function Game({
    handleShowWon,
 }) {
    const [score, setScore] = useState(0);
-   const [clickStatus, setClickStatus] = useState({ clickStatusInitial });
+   const [clickStatus, setClickStatus] = useState(clickStatusInitial);
 
    let shuffledCharacters = [];
    if (characters !== null && characters.length !== 0) {
@@ -23,13 +23,14 @@ export default function Game({
 
    function handleClickStatus(cardId) {
       if (clickStatus[cardId]) {
-         if (bestScore < score + 1) {
+         if (bestScore < score) {
             handleBestScore(score);
-            handleShowLost();
-            handleShowGame();
          }
+         handleShowLost();
+         handleShowGame();
       } else if (score + 1 === numOfCards) {
          handleShowWon();
+         handleShowGame();
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });
          setScore(score + 1);

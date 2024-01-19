@@ -1,0 +1,26 @@
+.game-instruction-text {
+   font-size: 1.5rem;
+   text-align: center;
+}
+
+.difficulty-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+}
+
+.difficulty-options {
+   display: flex;
+   gap: 1rem;
+}
+
+.select-difficulty-text {
+   font-size: 1.5rem;
+}
+
+.difficulty-option-btn {
+   padding: 1rem 2rem;
+   border-radius: 5px;
+   border: none;
+}

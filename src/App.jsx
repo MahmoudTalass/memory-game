@@ -18,6 +18,8 @@ export default function App() {
    const [showLost, setShowLost] = useState(false);
    const [showWon, setShowWon] = useState(false);
 
+   const [error, setError] = useState();
+
    function handleShowLost() {
       setShowLost(!showLost);
    }
@@ -45,27 +47,27 @@ export default function App() {
    useEffect(() => {
       async function fetchCharacters() {
          setCharacters(null);
-         const characters = await fetch(
-            "https://api.attackontitanapi.com/characters/1,2,3,4,5,12,86,87,88,124,184,188",
-            { mode: "cors" }
-         );
+         try {
+            const characters = await fetch(
+               "https://api.attackontitanapi.com/characters/1,2,3,4,5,12,86,87,88,124,184,188",
+               { mode: "cors" }
+            );
 
-         if (!characters.ok) {
-            return;
-         }
+            const charactersJson = await characters.json();
+            const charactersSimplified = charactersJson.map((char) => {
+               clickStatusInitial[char.id] = false;
+               return {
+                  id: char.id,
+                  name: char.name,
+                  img: char.img.split("/revision")[0],
+               };
+            });
 
-         const charactersJson = await characters.json();
-         const charactersSimplified = charactersJson.map((char) => {
-            clickStatusInitial[char.id] = false;
-            return {
-               id: char.id,
-               name: char.name,
-               img: char.img.split("/revision")[0],
-            };
-         });
-
-         if (!ignore) {
-            setCharacters(charactersSimplified);
+            if (!ignore) {
+               setCharacters(charactersSimplified);
+            }
+         } catch (error) {
+            setError(error);
          }
       }
       let ignore = false;
@@ -101,7 +103,7 @@ export default function App() {
                />
             )}
 
-            {showStartScreen && (
+            {showStartScreen && error === null && (
                <StartGame
                   handleShowStartScreen={handleShowStartScreen}
                   handleShowGame={handleShowGame}
@@ -115,6 +117,14 @@ export default function App() {
                   handleShowStartScreen={handleShowStartScreen}
                   handleShowWon={handleShowWon}
                />
+            )}
+            {error !== null && (
+               <>
+                  <h1>
+                     Game cannot be played at the moment, please come back later{" "}
+                  </h1>
+                  <p>{error}</p>
+               </>
             )}
          </main>
          <Footer />

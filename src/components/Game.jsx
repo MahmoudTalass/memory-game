@@ -8,19 +8,24 @@ export default function Game({
    handleBestScore,
    characters,
    clickStatusInitial,
+   numOfCards,
+   handleShowLost,
+   handleShowGame,
 }) {
    const [score, setScore] = useState(0);
    const [clickStatus, setClickStatus] = useState({ clickStatusInitial });
 
    let shuffledCharacters = [];
    if (characters !== null && characters.length !== 0) {
-      shuffledCharacters = arrayShuffle(characters);
+      shuffledCharacters = arrayShuffle(characters).slice(0, numOfCards);
    }
 
    function handleClickStatus(cardId) {
       if (clickStatus[cardId]) {
          if (bestScore < score + 1) {
             handleBestScore(score);
+            handleShowLost();
+            handleShowGame();
          }
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });

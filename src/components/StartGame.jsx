@@ -3,7 +3,14 @@ export default function StartGame({
    handleDifficulity,
    handleShowGame,
    handleShowStartScreen,
+   handleBestScore,
 }) {
+   function startGame(difficulity) {
+      handleShowGame();
+      handleShowStartScreen();
+      handleDifficulity(difficulity);
+      handleBestScore(0);
+   }
    return (
       <div className="start-game-container">
          <p className="game-instruction-text">
@@ -13,31 +20,19 @@ export default function StartGame({
          <div className="difficulity-options">
             <button
                className="difficulity-option-btn"
-               onClick={() => {
-                  handleShowGame();
-                  handleShowStartScreen();
-                  handleDifficulity(4);
-               }}
+               onClick={() => startGame(4)}
             >
                Easy
             </button>
             <button
                className="difficulity-option-btn"
-               onClick={() => {
-                  handleShowGame();
-                  handleShowStartScreen();
-                  handleDifficulity(8);
-               }}
+               onClick={() => startGame(8)}
             >
                Medium
             </button>
             <button
                className="difficulity-option-btn"
-               onClick={() => {
-                  handleShowGame();
-                  handleShowStartScreen();
-                  handleDifficulity(12);
-               }}
+               onClick={() => startGame(12)}
             >
                Hard
             </button>

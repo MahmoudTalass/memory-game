@@ -11,6 +11,7 @@ export default function Game({
    numOfCards,
    handleShowLost,
    handleShowGame,
+   handleShowWon,
 }) {
    const [score, setScore] = useState(0);
    const [clickStatus, setClickStatus] = useState({ clickStatusInitial });
@@ -27,6 +28,8 @@ export default function Game({
             handleShowLost();
             handleShowGame();
          }
+      } else if (score + 1 === numOfCards) {
+         handleShowWon();
       } else {
          setClickStatus({ ...clickStatus, [cardId]: true });
          setScore(score + 1);

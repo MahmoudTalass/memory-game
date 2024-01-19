@@ -1,0 +1,10 @@
+.won-game-container > p {
+   font-size: 3rem;
+}
+
+.try-again-btn {
+   padding: 1rem 2rem;
+   font-size: 1.5rem;
+   border: none;
+   border-radius: 5px;
+}

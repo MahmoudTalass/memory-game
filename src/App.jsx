@@ -3,14 +3,18 @@ import Footer from "./components/Footer";
 import Game from "./components/Game";
 import { useState, useEffect } from "react";
 import Lost from "./components/Lost";
+import StartGame from "./components/StartGame";
 
 const clickStatusInitial = {};
 
 export default function App() {
    const [bestScore, setBestScore] = useState(0);
    const [characters, setCharacters] = useState([]);
+   const [numOfCards, setNumOfCards] = useState(0);
+
    const [showGame, setShowGame] = useState(false);
-   const [showLost, setShowLost] = useState(true);
+   const [showStartScreen, setShowStartScreen] = useState(true);
+   const [showLost, setShowLost] = useState(false);
    const [showWon, setShowWon] = useState(false);
 
    function handleShowLost() {
@@ -23,6 +27,14 @@ export default function App() {
 
    function handleShowWon() {
       setShowWon(!showWon);
+   }
+
+   function handleShowStartScreen() {
+      setShowStartScreen(!showStartScreen);
+   }
+
+   function handleNumOfCards(num) {
+      setNumOfCards(num);
    }
 
    function handleBestScore(newBest) {
@@ -81,6 +93,14 @@ export default function App() {
                   handleShowLost={handleShowLost}
                   bestScore={bestScore}
                   maxPotentialScore={characters !== null && characters.length}
+               />
+            )}
+
+            {showStartScreen && (
+               <StartGame
+                  handleShowStartScreen={handleShowStartScreen}
+                  handleShowGame={handleShowGame}
+                  handleDifficulity={handleNumOfCards}
                />
             )}
          </main>

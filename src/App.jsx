@@ -105,7 +105,7 @@ export default function App() {
                <StartGame
                   handleShowStartScreen={handleShowStartScreen}
                   handleShowGame={handleShowGame}
-                  handleDifficulity={handleNumOfCards}
+                  handleDifficulty={handleNumOfCards}
                   handleBestScore={handleBestScore}
                />
             )}
@@ -113,6 +113,7 @@ export default function App() {
                <Won
                   handleBestScore={handleBestScore}
                   handleShowStartScreen={handleShowStartScreen}
+                  handleShowWon={handleShowWon}
                />
             )}
          </main>

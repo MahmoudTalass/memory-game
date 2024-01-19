@@ -1,6 +1,8 @@
 .game-container {
    display: flex;
-   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   gap: 2rem;
 }
 
 .cards-container {
@@ -27,4 +29,15 @@
    width: 100%;
    border: 3px solid #6f553f;
    border-radius: 5px;
+}
+
+.scores-container {
+   align-self: flex-end;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.scores-container > p {
+   font-size: 1.2rem;
 }

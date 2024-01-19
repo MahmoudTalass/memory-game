@@ -13,6 +13,8 @@ body {
    display: flex;
    flex-direction: column;
    background-color: #403535;
+   color: #fff9f5;
+   gap: 2rem;
 }
 
 header {

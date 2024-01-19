@@ -103,7 +103,7 @@ export default function App() {
                />
             )}
 
-            {showStartScreen && error === null && (
+            {showStartScreen && error === undefined && (
                <StartGame
                   handleShowStartScreen={handleShowStartScreen}
                   handleShowGame={handleShowGame}
@@ -118,7 +118,7 @@ export default function App() {
                   handleShowWon={handleShowWon}
                />
             )}
-            {error !== null && (
+            {error !== undefined && (
                <>
                   <h1>
                      Game cannot be played at the moment, please come back later{" "}

@@ -51,6 +51,7 @@ main {
 
 footer {
    margin-top: auto;
+   text-align: center;
 }
 
 button:not(.card) {

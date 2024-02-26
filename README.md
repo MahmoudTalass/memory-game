@@ -17,6 +17,10 @@ Welcome to the Attack on Titan Memory Card Game project! This React-based game c
 2. Remember which cards you've clicked to avoid clicking the same card twice.
 3. Keep track of your score and aim for the highest score possible!
 
+## Play the Game
+
+The Attack on Titan Memory Card Game is deployed through Netlify. Click [here](https://vermillion-seahorse-d656c1.netlify.app/) to play!
+
 ## Installation
 
 1. Clone this repository: `git clone https://github.com/MahmoudTalass/memory-game.git`
